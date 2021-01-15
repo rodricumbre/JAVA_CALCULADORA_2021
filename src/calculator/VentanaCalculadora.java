@@ -14,7 +14,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     //Aquí van las variables de instancia
     double operando1 = 0; //Almacena la información del primer número
     double operando2 = 0; //Almacena la información del segundo número
-    String resultado = ""; //almacena la operación que hemos pulsado
+    String operacion = ""; //almacena la operación que hemos pulsado
 
     /**
      * Creates new form VentanaCalculadora
@@ -30,7 +30,16 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         Display.setText(Display.getText() + numero);
         }
     }
-
+    
+    //La función que se encarga de trabajar con la operación pulsada
+    public void operacionPulsada( String _operacion){
+        //Guardo el valor de la pantalla en la variable operando1
+        operando1 = Double.valueOf(Display.getText());
+        //Pongo a cero la pantalla
+        Display.setText("0");
+        
+        operacion = _operacion;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -358,12 +367,13 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton9ActionPerformed
 
     private void BotonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIgualActionPerformed
-        Display.setText(resultado);
+        Display.setText(operacion);
     }//GEN-LAST:event_BotonIgualActionPerformed
 
     private void BotonMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMasActionPerformed
+        operacionPulsada("+");
         escribeNumeroEnPantalla("+");
-        resultado = String.valueOf(operando1 + operando2);
+        operacion = String.valueOf(operando1 + operando2);
     }//GEN-LAST:event_BotonMasActionPerformed
 
     private void BotonMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosActionPerformed
