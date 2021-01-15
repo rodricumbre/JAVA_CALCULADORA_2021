@@ -5,6 +5,8 @@
  */
 package calculator;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author rodri
@@ -214,13 +216,17 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         });
 
         BotonComa.setBackground(new java.awt.Color(255, 255, 255));
-        BotonComa.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
-        BotonComa.setText(",");
+        BotonComa.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        BotonComa.setText("Ans");
+        BotonComa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonComaActionPerformed(evt);
+            }
+        });
 
         Boton0.setBackground(new java.awt.Color(255, 255, 255));
         Boton0.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
         Boton0.setText("0");
-        Boton0.setActionCommand("0");
         Boton0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton0ActionPerformed(evt);
@@ -268,9 +274,8 @@ public class VentanaCalculadora extends javax.swing.JFrame {
                                 .addComponent(BotonX, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(BotonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(BotonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -315,11 +320,10 @@ public class VentanaCalculadora extends javax.swing.JFrame {
                             .addComponent(BotonMas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BotonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(BotonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -375,36 +379,65 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         //Si la operación era la suma:
         if (operacion.equals("+")){
             operando1 = operando1 + operando2;
+        }else{
+            //Si la operación es una resta
+            if (operacion.equals("-")){
+            operando1 = operando1 - operando2;
+            
+            }else{
+                if (operacion.equals("x")){
+                    operando1 = operando1 * operando2;
+                    
+            
+                }else{
+                    if (operacion.equals("/")){
+                     operando1 = operando1 / operando2;
+                    
+                    
+                    }else{
+                        if (operacion.equals("√")){
+                            double resultado = Math.sqrt(operando1);
+                        }
+                    }
+                }
+            }
         }
         
-        //Por último, muestro el resultado por pantalla
-        Display.setText( String.valueOf(operando1));
+        DecimalFormat resultado = new DecimalFormat("0.#");
+        Display.setText( resultado.format(operando1));
     }//GEN-LAST:event_BotonIgualActionPerformed
 
+       
+    
+        
     private void BotonMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMasActionPerformed
         operacionPulsada("+");
-        operacion = String.valueOf(operando1 + operando2);
     }//GEN-LAST:event_BotonMasActionPerformed
 
     private void BotonMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMenosActionPerformed
-        escribeNumeroEnPantalla("-");
+        operacionPulsada("-");
     }//GEN-LAST:event_BotonMenosActionPerformed
 
     private void BotonXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonXActionPerformed
-        escribeNumeroEnPantalla("x");
+        operacionPulsada("x");
     }//GEN-LAST:event_BotonXActionPerformed
 
     private void BotonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDivisionActionPerformed
-        escribeNumeroEnPantalla("/");
+         operacionPulsada("/");
     }//GEN-LAST:event_BotonDivisionActionPerformed
 
     private void RaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaizActionPerformed
-        escribeNumeroEnPantalla("√");
+        operacionPulsada("√");
     }//GEN-LAST:event_RaizActionPerformed
 
     private void BotonCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCEActionPerformed
         Display.setText("0");
     }//GEN-LAST:event_BotonCEActionPerformed
+
+    private void BotonComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonComaActionPerformed
+        DecimalFormat Ans = new DecimalFormat("0.#");
+        Display.setText( Ans.format(operando1));
+    }//GEN-LAST:event_BotonComaActionPerformed
 
     /**
      * @param args the command line arguments

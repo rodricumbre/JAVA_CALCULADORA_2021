@@ -71,9 +71,8 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="BotonComa" min="-2" pref="90" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="Boton0" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="BotonIgual" min="-2" pref="198" max="-2" attributes="0"/>
@@ -132,13 +131,11 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="BotonComa" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="Boton0" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="Boton0" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                   <Component id="BotonIgual" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="BotonComa" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -378,10 +375,13 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Consolas" size="48" style="1"/>
+          <Font name="Consolas" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value=","/>
+        <Property name="text" type="java.lang.String" value="Ans"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonComaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Boton0">
       <Properties>
