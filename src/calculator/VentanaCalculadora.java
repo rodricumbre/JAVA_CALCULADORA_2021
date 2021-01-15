@@ -13,7 +13,6 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     
     //Aquí van las variables de instancia
     double operando1 = 0; //Almacena la información del primer número
-    double operando2 = 0; //Almacena la información del segundo número
     String operacion = ""; //almacena la operación que hemos pulsado
 
     /**
@@ -367,12 +366,23 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton9ActionPerformed
 
     private void BotonIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIgualActionPerformed
-        Display.setText(operacion);
+        //El botón igual tiene que saber qué operación se pulsó
+        //Como ese valor lo guardé en la variable operación
+        //monto un if para que dependiendo de ese valor se realice
+        //la operación correspondiente
+        double operando2 = Double.valueOf(Display.getText());
+        
+        //Si la operación era la suma:
+        if (operacion.equals("+")){
+            operando1 = operando1 + operando2;
+        }
+        
+        //Por último, muestro el resultado por pantalla
+        Display.setText( String.valueOf(operando1));
     }//GEN-LAST:event_BotonIgualActionPerformed
 
     private void BotonMasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMasActionPerformed
         operacionPulsada("+");
-        escribeNumeroEnPantalla("+");
         operacion = String.valueOf(operando1 + operando2);
     }//GEN-LAST:event_BotonMasActionPerformed
 
