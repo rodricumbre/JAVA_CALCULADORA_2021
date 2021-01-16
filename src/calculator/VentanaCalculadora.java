@@ -30,6 +30,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         }else{
         Display.setText(Display.getText() + numero);
         }
+        
     }
     
     //La función que se encarga de trabajar con la operación pulsada
@@ -68,9 +69,11 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         Boton0 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(30, 30, 30));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         Display.setBackground(new java.awt.Color(0, 0, 0));
-        Display.setFont(new java.awt.Font("Consolas", 0, 48)); // NOI18N
+        Display.setFont(new java.awt.Font("Consolas", 0, 60)); // NOI18N
         Display.setForeground(new java.awt.Color(56, 210, 195));
         Display.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         Display.setText("0");
@@ -156,7 +159,8 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         });
 
         Raiz.setFont(new java.awt.Font("Consolas", 1, 48)); // NOI18N
-        Raiz.setText("√");
+        Raiz.setText("x²");
+        Raiz.setAutoscrolls(true);
         Raiz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RaizActionPerformed(evt);
@@ -237,11 +241,11 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Display, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +277,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(BotonX, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(BotonComa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Boton0, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,9 +288,9 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addComponent(Display, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BotonCE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,35 +380,38 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         //la operación correspondiente
         double operando2 = Double.valueOf(Display.getText());
         
-        //Si la operación era la suma:
+       //Si la operación era la suma:
         if (operacion.equals("+")){
             operando1 = operando1 + operando2;
-        }else{
-            //Si la operación es una resta
-            if (operacion.equals("-")){
+            
+            
+          //Si la operación es una resta 
+        } else if (operacion.equals("-")){
             operando1 = operando1 - operando2;
             
-            }else{
-                if (operacion.equals("x")){
-                    operando1 = operando1 * operando2;
-                    
             
-                }else{
-                    if (operacion.equals("/")){
-                     operando1 = operando1 / operando2;
+          //Si la operación es una multiplicación
+        } else if (operacion.equals("x")){
+            operando1 = operando1 * operando2;
+                
                     
+          //Si la operación es una división    
+        } else if (operacion.equals("/")){
+            operando1 = operando1 / operando2;
+      
                     
-                    }else{
-                        if (operacion.equals("√")){
-                            double resultado = Math.sqrt(operando1);
-                        }
-                    }
-                }
-            }
+          //Si la operación es el cuadrado
+        } else if (operacion.equals("²")){
+            operando1 = operando1 * operando1;
+                            
         }
         
+                                           
+        
+        //Se saca la información por pantalla eliminando el caracter decimal
         DecimalFormat resultado = new DecimalFormat("0.#");
         Display.setText( resultado.format(operando1));
+        
     }//GEN-LAST:event_BotonIgualActionPerformed
 
        
@@ -423,11 +430,12 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonXActionPerformed
 
     private void BotonDivisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonDivisionActionPerformed
-         operacionPulsada("/");
+        operacionPulsada("/");
     }//GEN-LAST:event_BotonDivisionActionPerformed
 
     private void RaizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaizActionPerformed
-        operacionPulsada("√");
+        operacionPulsada("²");
+        
     }//GEN-LAST:event_RaizActionPerformed
 
     private void BotonCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCEActionPerformed
@@ -435,6 +443,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonCEActionPerformed
 
     private void BotonComaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonComaActionPerformed
+        //Aquí se hace la operación Ans
         DecimalFormat Ans = new DecimalFormat("0.#");
         Display.setText( Ans.format(operando1));
     }//GEN-LAST:event_BotonComaActionPerformed
