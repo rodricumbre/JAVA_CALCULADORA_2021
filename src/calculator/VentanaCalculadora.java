@@ -15,6 +15,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     
     //Aquí van las variables de instancia
     double operando1 = 0; //Almacena la información del primer número
+    double result = 0; //Almacena la información del resultado
     String operacion = ""; //almacena la operación que hemos pulsado
 
     /**
@@ -379,30 +380,32 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         //monto un if para que dependiendo de ese valor se realice
         //la operación correspondiente
         double operando2 = Double.valueOf(Display.getText());
+        double result = Double.valueOf(Display.getText());
+
         
        //Si la operación era la suma:
         if (operacion.equals("+")){
-            operando1 = operando1 + operando2;
+            result = operando1 + operando2;
             
             
           //Si la operación es una resta 
         } else if (operacion.equals("-")){
-            operando1 = operando1 - operando2;
+            result = operando1 - operando2;
             
             
           //Si la operación es una multiplicación
         } else if (operacion.equals("x")){
-            operando1 = operando1 * operando2;
+            result = operando1 * operando2;
                 
                     
           //Si la operación es una división    
         } else if (operacion.equals("/")){
-            operando1 = operando1 / operando2;
+            result = operando1 / operando2;
       
                     
           //Si la operación es el cuadrado
         } else if (operacion.equals("²")){
-            operando1 = operando1 * operando1;
+            result = operando1 * operando1;
                             
         }
         
@@ -410,7 +413,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         
         //Se saca la información por pantalla eliminando el caracter decimal
         DecimalFormat resultado = new DecimalFormat("0.#");
-        Display.setText( resultado.format(operando1));
+        Display.setText( resultado.format(result));
         
     }//GEN-LAST:event_BotonIgualActionPerformed
 
