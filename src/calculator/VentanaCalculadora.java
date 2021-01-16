@@ -379,6 +379,8 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         //Como ese valor lo guardé en la variable operación
         //monto un if para que dependiendo de ese valor se realice
         //la operación correspondiente
+        
+        //Se pasan los valores a String
         double operando2 = Double.valueOf(Display.getText());
         double result = Double.valueOf(Display.getText());
 
